@@ -1,0 +1,15 @@
+{
+  "apps": [
+    {
+      "name": "p3025_oui",
+      "script": "p3025_oui.js",
+      "cwd": "/var/www/oui.ciscoar.com",
+      "exec_mode": "fork",
+      "instances": 1,
+      "watch": false,
+      "log_file": "/var/log/pm2/p3025_oui-combined.log",
+      "error_file": "/var/log/pm2/p3025_oui-error.log",
+      "out_file": "/var/log/pm2/p3025_oui-out.log"
+    }
+  ]
+}

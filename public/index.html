@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multiple MAC OUI Lookup</title>
+    <meta name="description" content="Lookup manufacturers for multiple MAC addresses. Fast, simple, and accurate OUI (Organizationally Unique Identifier) discovery.">
+    <link rel="icon" href="/img/favicon.ico" type="image/x-icon" />
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="main-wrapper">
+        <header class="header">
+            <div class="header-flex">
+                <img src="/img/oui-logo-homepage300x300px.png" alt="OUI Logo" class="logo">
+                <div class="header-titles">
+                    <h1>MAC OUI Lookup Tool</h1>
+                    <p class="subtitle">Find the manufacturer for up to 6 MAC addresses instantly.</p>
+                </div>
+            </div>
+        </header>
+        <section class="lookup-section">
+            <div class="table-container">
+                <div class="table-row table-header">
+                    <div class="table-cell">#</div>
+                    <div class="table-cell">MAC Address</div>
+                    <div class="table-cell">Action</div>
+                    <div class="table-cell">Result</div>
+                </div>
+                <!-- MAC Input Rows -->
+                <div class="table-row">
+                    <div class="table-cell cell-index">1</div>
+                    <div class="table-cell">
+                        <input type="text" id="macInput1" placeholder="AA:BB:CC:DD:EE:FF">
+                    </div>
+                    <div class="table-cell">
+                        <button onclick="lookupOUI(1)">Lookup</button>
+                    </div>
+                    <div class="table-cell result-td">
+                        <span class="result-class" id="result1"></span>
+                    </div>
+                </div>
+                <div class="table-row">
+                    <div class="table-cell cell-index">2</div>
+                    <div class="table-cell">
+                        <input type="text" id="macInput2" placeholder="AA:BB:CC:DD:EE:FF">
+                    </div>
+                    <div class="table-cell">
+                        <button onclick="lookupOUI(2)">Lookup</button>
+                    </div>
+                    <div class="table-cell result-td">
+                        <span class="result-class" id="result2"></span>
+                    </div>
+                </div>
+                <div class="table-row">
+                    <div class="table-cell cell-index">3</div>
+                    <div class="table-cell">
+                        <input type="text" id="macInput3" placeholder="AA:BB:CC:DD:EE:FF">
+                    </div>
+                    <div class="table-cell">
+                        <button onclick="lookupOUI(3)">Lookup</button>
+                    </div>
+                    <div class="table-cell result-td">
+                        <span class="result-class" id="result3"></span>
+                    </div>
+                </div>
+                <div class="table-row">
+                    <div class="table-cell cell-index">4</div>
+                    <div class="table-cell">
+                        <input type="text" id="macInput4" placeholder="AA:BB:CC:DD:EE:FF">
+                    </div>
+                    <div class="table-cell">
+                        <button onclick="lookupOUI(4)">Lookup</button>
+                    </div>
+                    <div class="table-cell result-td">
+                        <span class="result-class" id="result4"></span>
+                    </div>
+                </div>
+                <div class="table-row">
+                    <div class="table-cell cell-index">5</div>
+                    <div class="table-cell">
+                        <input type="text" id="macInput5" placeholder="AA:BB:CC:DD:EE:FF">
+                    </div>
+                    <div class="table-cell">
+                        <button onclick="lookupOUI(5)">Lookup</button>
+                    </div>
+                    <div class="table-cell result-td">
+                        <span class="result-class" id="result5"></span>
+                    </div>
+                </div>
+                <div class="table-row">
+                    <div class="table-cell cell-index">6</div>
+                    <div class="table-cell">
+                        <input type="text" id="macInput6" placeholder="AA:BB:CC:DD:EE:FF">
+                    </div>
+                    <div class="table-cell">
+                        <button onclick="lookupOUI(6)">Lookup</button>
+                    </div>
+                    <div class="table-cell result-td">
+                        <span class="result-class" id="result6"></span>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <footer class="footer">
+            <p>Powered by <a href="https://standards.ieee.org/">IEEE OUI Database</a> &middot; Built with ❤️ for the network community.</p>
+        </footer>
+    </div>
+    <script>
+    async function lookupOUI(index) {
+        let macInput = document.getElementById(`macInput${index}`).value.trim().toUpperCase();
+        let cleanedMac = macInput.replace(/[^0-9A-F]/g, '');
+        if (!/^[0-9A-F]{12}$/.test(cleanedMac)) {
+            document.getElementById(`result${index}`).innerText = "Invalid MAC format";
+            document.getElementById(`result${index}`).classList.add('result-error');
+            return;
+        }
+        document.getElementById(`result${index}`).innerText = "Looking up...";
+        document.getElementById(`result${index}`).classList.remove('result-error');
+        try {
+            let response = await fetch(`/lookup/${cleanedMac}`);
+            let data = await response.json();
+            document.getElementById(`result${index}`).innerText =
+                data.manufacturer || "Manufacturer not found";
+        } catch (e) {
+            document.getElementById(`result${index}`).innerText = "Lookup error";
+        }
+    }
+    </script>
+</body>
+</html>

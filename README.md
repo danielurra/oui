@@ -11,7 +11,7 @@ This is a MAC address OUI (Organizationally Unique Identifier) lookup tool that 
 - **Frontend**: Static HTML/CSS/JavaScript served from `/public` directory
 - **Data Source**: IEEE OUI database fetched from http://standards-oui.ieee.org/oui.txt
 - **Caching**: OUI data is cached in memory after first fetch
-- **Process Management**: Configured for PM2 with `process.json`
+- **Process Management**: PM2
 
 ## Key Components
 

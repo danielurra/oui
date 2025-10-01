@@ -1,6 +1,6 @@
 # Mac address lookup tool
 <div align="center">
-  <a href="https://oui.ciscoar.com" target="_blank">
+  <a href="https://oui.ciscoar.com">
     <img width="702" height="82" alt="svg-oui-url" src="https://github.com/user-attachments/assets/0c89c074-bb74-4b7a-a3c1-76df3b463ca5" />
   </a>
 </div>

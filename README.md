@@ -6,7 +6,8 @@
 </div>
 
 Simple enter your device MAC address to know its Manufacturer.<br>
-<img width="957" height="643" alt="image" src="https://github.com/user-attachments/assets/3c268867-3162-4c2a-b87b-bbd6522e4e9a" />
+<img width="957" height="643" alt="oui-in-action" src="https://github.com/user-attachments/assets/a0201d2f-1026-446b-b5c3-dd761f5dd6ae" />
+
 ## Project Overview
 
 This is a MAC address OUI (Organizationally Unique Identifier) lookup tool that identifies device manufacturers from MAC addresses. The application is a Node.js/Express server serving a web interface for looking up multiple MAC addresses.
